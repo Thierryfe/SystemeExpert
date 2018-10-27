@@ -1,0 +1,18 @@
+si malhonneteetfortalorsriche;
+18si parents_richesetintelligentalorsriche;
+19si travailleuretintelligentalorsriche;
+20si fortune>10000alorsriche;
+21si professi on=medecinalorsriche;
+22si professi on=informaticienalorsriche;
+23si professi on=fonctionnairealorspauvre;
+24si nonhabite_chateaualorspauvre;
+25si richealorsnonpauvre;
+26si pauvrealorsnonriche;
+27si avoir_fait_prisonalorsmalhonnete;
+28si grandetlourdalorsfort;
+29si taille>185alorsgrand;
+30si poids>95alorslourd;
+31si poids<50alorsleger;
+32si poids<50alorsfortune=(2∗fortune_parents)−1;
+33si fortune_parents>10000alorsparents_riches;
+34si travail_par_jour>8alorstravailleur
