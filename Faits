@@ -1,4 +1,0 @@
-if le patient a mal à la tête then le patient a la migraine;
-if le patient a la fièvre then le patient a attrapé un virus;
-if le patient a la fièvre > 40 then urgence;
-if mal de tête et le patient a attrapé un virus then le patient à la grippe;
