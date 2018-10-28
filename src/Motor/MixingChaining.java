@@ -19,15 +19,14 @@ public class MixingChaining implements Motor {
 
 
 	public void work() {
-		//entrée :  un fait que l'on doit prouver
+		//entrï¿½e :  un fait que l'on doit prouver
 		// remplir la base faits par chainage avant
-		//rechercher les faits déductibles
+		//rechercher les faits dï¿½ductibles
 		//creer une question pertinente
-		//traiter sa réponse pour l'inserer dans la base de fait
+		//traiter sa rï¿½ponse pour l'inserer dans la base de fait
 	}
 
 
-	@Override
 	public void work(Fact factToProve) {
 		// TODO Auto-generated method stub
 		

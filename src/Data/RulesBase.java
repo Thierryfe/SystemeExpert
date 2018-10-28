@@ -13,8 +13,26 @@ public class RulesBase extends ArrayList<Rule>{
 		super();
 	}
 	
+	public void addRule(Rule r) {
+		super.add(r);
+	}
+	
+	public void removeRule(Rule r) {
+		super.remove(r);
+	}
+	
+	public int ruleRemaining() {
+		return super.size();
+		
+	}
+	
+	public boolean containsRule(Rule r) {
+		return false;
+		
+	}
+	
 	public boolean isApplicableRuleExisting(FactsBase fB) {
-		//on verifie si pour chaque règle il y a une prémisse dans la base de faits
+		//on verifie si pour chaque regle il y a une premisse dans la base de faits
 		return true;
 	}
 	

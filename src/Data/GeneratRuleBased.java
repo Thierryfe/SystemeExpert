@@ -1,15 +1,18 @@
+package Data;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class RuleBased {
+public class GeneratRuleBased {
 	private File file;
+	private RulesBase rulesBase;
 
-	public RuleBased(String fileName) {
+	public GeneratRuleBased(String fileName) {
 		super();
 		this.file = new File(fileName);
+		this.rulesBase = new RulesBase();
 	}
 	
 	public void generateRuleBased() {
@@ -21,7 +24,23 @@ public class RuleBased {
 				String line = br.readLine();
 				
 				while(line != null) {
-					System.out.println(line);
+					Rule rule = new Rule();
+					String[] result = line.split(" ALORS ");
+					String[] premise = result[0].split(" ");
+					String[] consequence = result[1].split(" ");
+					
+					for(String s : premise) {
+						String[] equal = s.split("=");
+						rule.addFactInPremise(new Fact(equal[0], equal[1]));
+					}
+					
+					for(String s : consequence) {
+						String[] equal = s.split("=");
+						rule.addFactInConsequence(new Fact(equal[0], equal[1]));
+					}
+					
+					this.rulesBase.addRule(rule);
+					System.out.println(rule);
 					line = br.readLine();
 				}
 				

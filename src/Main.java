@@ -1,10 +1,11 @@
+import Data.GeneratRuleBased;
 
 public class Main {
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		RuleBased rb = new RuleBased("Rules");
+		GeneratRuleBased rb = new GeneratRuleBased("Rules");
 		rb.generateRuleBased();
 	}
 }

@@ -19,14 +19,13 @@ public class BackwardChaining implements Motor {
 
 	public void work() {
 
-		//entrées : base de faits, base de règle et un fait que l'on doit prouver
-		//rechercher toute les règles qui donnent sur ce fait et en faire une liste
+		//entrï¿½es : base de faits, base de rï¿½gle et un fait que l'on doit prouver
+		//rechercher toute les rï¿½gles qui donnent sur ce fait et en faire une liste
 
 
 	}
 
 
-	@Override
 	public void work(Fact factToProve) {
 		// TODO Auto-generated method stub
 		

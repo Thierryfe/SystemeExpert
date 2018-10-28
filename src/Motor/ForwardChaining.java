@@ -17,30 +17,29 @@ public class ForwardChaining implements Motor {
 		this.rules = rules;
 	}
 	
-	@Override
 	public void work(Fact factToProve) {
-		//entrées : base de faits, base de règle et un fait que l'on doit prouver
-		//tant que le fait n'est pas dans la base de faits && que dans BR il ya une règle applciable
-			//choisir règle applicable
-			//on désactive cette règle de la base de règle
-			//on afjoute cette règle à labase de faits
-		//si le fait appartient à la base de faits
+		//entrï¿½es : base de faits, base de rï¿½gle et un fait que l'on doit prouver
+		//tant que le fait n'est pas dans la base de faits && que dans BR il ya une rï¿½gle applciable
+			//choisir rï¿½gle applicable
+			//on dï¿½sactive cette rï¿½gle de la base de rï¿½gle
+			//on afjoute cette rï¿½gle ï¿½ labase de faits
+		//si le fait appartient ï¿½ la base de faits
 			//retourner true
 		
 		while(!facts.containsFact(factToProve)&& rules.isApplicableRuleExisting(facts)) {
 			
-			//on prepare la règle applicable
+			//on prepare la rï¿½gle applicable
 			Rule applicableRule= null;
-			//on cherche une règle applicable dans la base de règle
+			//on cherche une rï¿½gle applicable dans la base de rï¿½gle
 			for (Rule ruleTocheck : rules) {
-				//si on trouve une règle applicable
+				//si on trouve une rï¿½gle applicable
 				//alors
-				// on le récupere
-				// on retire cette règle de la base de règle
+				// on le rï¿½cupere
+				// on retire cette rï¿½gle de la base de rï¿½gle
 				// on stop le for
 			}
 			
-			//pn ajoute la conclusion de cette règle à la base de fait
+			//pn ajoute la conclusion de cette rï¿½gle ï¿½ la base de fait
 			
 		
 		}
