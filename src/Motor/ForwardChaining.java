@@ -1,7 +1,5 @@
 package Motor;
 
-import java.util.List;
-
 import Data.Fact;
 import Data.FactsBase;
 import Data.Rule;
@@ -29,8 +27,28 @@ public class ForwardChaining implements Motor {
 		//si le fait appartient à la base de faits
 			//retourner true
 		
-		while(!facts.containsFact(factToProve)) {
+		while(!facts.containsFact(factToProve)&& rules.isApplicableRuleExisting(facts)) {
 			
+			//on prepare la règle applicable
+			Rule applicableRule= null;
+			//on cherche une règle applicable dans la base de règle
+			for (Rule ruleTocheck : rules) {
+				//si on trouve une règle applicable
+				//alors
+				// on le récupere
+				// on retire cette règle de la base de règle
+				// on stop le for
+			}
+			
+			//pn ajoute la conclusion de cette règle à la base de fait
+			
+		
+		}
+		
+		if(facts.containsFact(factToProve)) {	
+			System.out.println("fact is proved.");
+		}else {
+			System.out.println("fact is wrong.");
 		}
 	}
 
