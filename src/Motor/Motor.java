@@ -1,7 +1,9 @@
 package Motor;
 
- interface  Motor {
+import Data.Fact;
 
-	public void work();
+interface  Motor {
+
+	public void work(Fact factToProve);
 
 }	

@@ -26,4 +26,11 @@ public class MixingChaining implements Motor {
 		//traiter sa réponse pour l'inserer dans la base de fait
 	}
 
+
+	@Override
+	public void work(Fact factToProve) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,17 +1,16 @@
 package Motor;
 
-import java.util.List;
-
 import Data.Fact;
-import Data.Rule;
+import Data.FactsBase;
+import Data.RulesBase;
 
 public class BackwardChaining implements Motor {
 
-	private List<Fact> facts;
-	private List<Rule> rules;
+	private FactsBase facts;
+	private RulesBase rules;
 
 
-	public BackwardChaining(List<Fact> facts, List<Rule> rules) {
+	public BackwardChaining(FactsBase facts, RulesBase rules) {
 		super();
 		this.facts = facts;
 		this.rules = rules;
@@ -24,6 +23,13 @@ public class BackwardChaining implements Motor {
 		//rechercher toute les règles qui donnent sur ce fait et en faire une liste
 
 
+	}
+
+
+	@Override
+	public void work(Fact factToProve) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
