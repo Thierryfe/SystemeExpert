@@ -7,7 +7,6 @@ import Data.Rule;
 
 public class MixingChaining implements Motor {
 
-
 	private List<Fact> facts;
 	private List<Rule> rules;
 
