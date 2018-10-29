@@ -40,7 +40,7 @@ public class GeneratRuleBased {
 					}
 					
 					this.rulesBase.addRule(rule);
-					System.out.println(rule);
+					//System.out.println(rule);
 					line = br.readLine();
 				}
 				
@@ -59,4 +59,10 @@ public class GeneratRuleBased {
 		}
 		
 	}
+
+	public RulesBase getRulesBase() {
+		return rulesBase;
+	}
+	
+	
 }

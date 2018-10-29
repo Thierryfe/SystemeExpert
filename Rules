@@ -27,7 +27,7 @@ theme=clown auteur=Stephen_King ALORS livre=Ca
 theme=famille theme=folie auteur=Stephen_King ALORS livre=Shining
 theme=jalousie theme=folie auteur=Emile_Zola ALORS livre=Therese_Raquin
 theme=amour auteur=Jane_Austen ALORS livre=Orgueils_et_Prejuges
-theme=dictature auteur=Jules_Vernes ALORS livre=1984
+theme=dictature auteur=George_Orwell ALORS livre=1984
 theme=voyage auteur=Jules_Vernes ALORS livre=Voyage_au_centre_de_la_terre
 theme=jalousie theme=famille auteur=Francoise_Sagan ALORS livre=Bonjour_Tristesse
 theme=folie auteur=Guy_de_Maupassant ALORS livre=Le_Horla

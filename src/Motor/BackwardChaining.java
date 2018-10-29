@@ -17,18 +17,11 @@ public class BackwardChaining implements Motor {
 	}
 
 
-	public void work() {
-
+	public void work(Fact factToProve) {
+		// TODO Auto-generated method stub
 		//entr�es : base de faits, base de r�gle et un fait que l'on doit prouver
 		//rechercher toute les r�gles qui donnent sur ce fait et en faire une liste
 
-
-	}
-
-
-	public void work(Fact factToProve) {
-		// TODO Auto-generated method stub
-		
 	}
 
 

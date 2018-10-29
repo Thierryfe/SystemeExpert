@@ -29,7 +29,8 @@ public class FactsBase extends ArrayList<Fact> {
 	}
 	
 	public boolean containsFact(Fact f) {
-		return false;
+		
+		return this.contains(f);
 		
 	}
 }
