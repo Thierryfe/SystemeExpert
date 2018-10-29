@@ -59,10 +59,11 @@ public class ForwardChaining implements Motor {
 						break;
 					}
 				}
+				//si on trouve une règle applicable alors on stop la recherche
 				if(applicableRule!=null)
 					break;
 			}
-			
+			//si il y une règle applicable on la retire de la liste des règles et on ajoute les consequences à la base de fait
 			if(applicableRule!=null) {
 				rulesTemp.remove(applicableRule);
 				for(Fact consequence: applicableRule.getConsequence()) {
