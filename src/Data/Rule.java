@@ -28,17 +28,10 @@ public class Rule {
 	}
 
 	
-	public FactsBase getPremise() {
-		return premise;
-	}
-
 	public void setPremise(FactsBase premise) {
 		this.premise = premise;
 	}
 
-	public FactsBase getConsequence() {
-		return consequence;
-	}
 
 	public void setConsequence(FactsBase consequence) {
 		this.consequence = consequence;
