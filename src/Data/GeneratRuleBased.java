@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GeneratRuleBased {
 	private File file;
@@ -21,6 +23,7 @@ public class GeneratRuleBased {
 			BufferedReader br = new BufferedReader(fr);
 			
 			try {
+				Pattern p = Pattern.compile("^([a-zA-Z0-9_]+)([<>]?=)([a-zA-Z0-9_]+)$");
 				String line = br.readLine();
 				
 				while(line != null) {
@@ -30,13 +33,19 @@ public class GeneratRuleBased {
 					String[] consequence = result[1].split(" ");
 					
 					for(String s : premise) {
-						String[] equal = s.split("=");
-						rule.addFactInPremise(new Fact(equal[0], equal[1]));
+						Matcher m = p.matcher(s);
+						if(m.matches()) {
+							//System.out.println(m.group(1)+m.group(2)+m.group(3));
+							rule.addFactInPremise(new Fact(m.group(1), m.group(2), m.group(3)));
+						}
 					}
 					
 					for(String s : consequence) {
-						String[] equal = s.split("=");
-						rule.addFactInConsequence(new Fact(equal[0], equal[1]));
+						Matcher m = p.matcher(s);
+						if(m.matches()) {
+							//System.out.println(m.group(1)+m.group(2)+m.group(3));
+							rule.addFactInConsequence(new Fact(m.group(1), m.group(2), m.group(3)));
+						}
 					}
 					
 					this.rulesBase.addRule(rule);
