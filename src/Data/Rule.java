@@ -18,6 +18,14 @@ public class Rule {
 	public void addFactInConsequence(Fact fact) {
 		this.consequence.addFact(fact);
 	}
+	
+	public FactsBase getPremise() {
+		return premise;
+	}
+
+	public FactsBase getConsequence() {
+		return consequence;
+	}
 
 	@Override
 	public String toString() {
