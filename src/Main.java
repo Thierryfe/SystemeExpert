@@ -12,13 +12,13 @@ public class Main {
 		rb.generateRuleBased();
 		
 		FactsBase fb= new FactsBase();
-		fb.addFact(new Fact("auteur","Boris_Vian"));
-		fb.addFact(new Fact("theme","dictature"));
+	//	fb.addFact(new Fact("auteur","Boris_Vian"));
+	//	fb.addFact(new Fact("theme","dictature"));
 		
-		Fact target = new Fact("auteur","George_Orwell");
+	// target = new Fact("auteur","George_Orwell");
 		
-		ForwardChaining forward= new ForwardChaining(fb, rb.getRulesBase());
+// forward= new ForwardChaining(fb, rb.getRulesBase());
 		
-		forward.work(target);
+	//	forward.work(target);
 	}
 }
