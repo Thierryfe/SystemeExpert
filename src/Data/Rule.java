@@ -21,17 +21,10 @@ public class Rule {
 
 
 	
-	public FactsBase getPremise() {
-		return premise;
-	}
-
 	public void setPremise(FactsBase premise) {
 		this.premise = premise;
 	}
 
-	public FactsBase getConsequence() {
-		return consequence;
-	}
 
 	public void setConsequence(FactsBase consequence) {
 		this.consequence = consequence;
@@ -53,6 +46,11 @@ public class Rule {
 		}
 		
 		return string;
+	}
+
+	public Object getPremise() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

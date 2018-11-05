@@ -1,24 +1,34 @@
-import Data.Fact;
-import Data.FactsBase;
-import Data.GeneratRuleBased;
-import Motor.ForwardChaining;
+import java.util.ArrayList;
+
+
+import Rework.CreateBaseDeRegle;
+import Rework.Fait;
+
 
 public class Main {
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		GeneratRuleBased rb = new GeneratRuleBased("Rules");
+		CreateBaseDeRegle rb = new CreateBaseDeRegle("Rules");
 		rb.generateRuleBased();
+
+		Fait but = new Fait("livre","=","J_irai_cracher_sur_vos_tombes");
 		
-		FactsBase fb= new FactsBase();
-	//	fb.addFact(new Fact("auteur","Boris_Vian"));
-	//	fb.addFact(new Fact("theme","dictature"));
 		
-	// target = new Fact("auteur","George_Orwell");
+	//	Moteur m = new Moteur(baseDeFait,baseDeRegle);
 		
-// forward= new ForwardChaining(fb, rb.getRulesBase());
+	//	m.chainageAvant(but);
 		
-	//	forward.work(target);
-	}
+		//FactsBase fb= new FactsBase();
+//		fb.addFact(new Fact("auteur","Boris_Vian"));
+//		fb.addFact(new Fact("theme","dictature"));
+//		
+//		Fact target = new Fact("auteur","George_Orwell");
+//		
+//		ForwardChaining forward= new ForwardChaining(fb, rb.getRulesBase());
+//		
+//		forward.work(target);
+//	
+		}
 }

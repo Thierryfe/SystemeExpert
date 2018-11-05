@@ -33,13 +33,13 @@ public class RulesBase extends ArrayList<Rule>{
 
 	public boolean isApplicableRuleExisting(FactsBase fB) {
 		//on verifie si pour chaque regle il y a une premisse dans la base de faits
-		for(Rule r : this){
+		/*for(Rule r : this){
 			for(Fact premise : r.getPremise()) {
 				if(fB.contains(premise)){
 					return true;
 				}
 			}
-		}
+		}*/
 		return false;
 	}
 

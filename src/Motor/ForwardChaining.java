@@ -50,7 +50,7 @@ public class ForwardChaining implements Motor {
 				// on retire cette rï¿½gle de la base de rï¿½gle
 				// on stop le for
 				// on ajoute la conclusion de cette rï¿½gle ï¿½ la base de fait
-				for(Fact premise : ruleTocheck.getPremise()) {
+				/*for(Fact premise : ruleTocheck.getPremise()) {
 					//System.out.println("Premisse : "+premisse.toString());
 					if(factsTemp.containsFact(premise) ) {
 						//	System.out.println("Premisse dans la base de fait !");
@@ -58,19 +58,19 @@ public class ForwardChaining implements Motor {
 						System.out.println(" Applicable rule : "+applicableRule.toString()); 
 						break;
 					}
-				}
+				}*/
 				//si on trouve une règle applicable alors on stop la recherche
 				if(applicableRule!=null)
 					break;
 			}
 			//si il y une règle applicable on la retire de la liste des règles et on ajoute les consequences à la base de fait
-			if(applicableRule!=null) {
+		/*	if(applicableRule!=null) {
 				rulesTemp.remove(applicableRule);
 				for(Fact consequence: applicableRule.getConsequence()) {
 
 					factsTemp.addFact(consequence);
 				}
-			}
+			}*/
 			
 			
 
