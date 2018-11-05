@@ -36,7 +36,7 @@ public class GeneratRuleBased {
 						Matcher m = p.matcher(s);
 						if(m.matches()) {
 							//System.out.println(m.group(1)+m.group(2)+m.group(3));
-							rule.addFactInPremise(new Fact(m.group(1), m.group(2), m.group(3)));
+						//	rule.addFactInPremise(new Fact(m.group(1), m.group(2), m.group(3)));
 						}
 					}
 					
@@ -44,7 +44,7 @@ public class GeneratRuleBased {
 						Matcher m = p.matcher(s);
 						if(m.matches()) {
 							//System.out.println(m.group(1)+m.group(2)+m.group(3));
-							rule.addFactInConsequence(new Fact(m.group(1), m.group(2), m.group(3)));
+						//	rule.addFactInConsequence(new Fact(m.group(1), m.group(2), m.group(3)));
 						}
 					}
 					

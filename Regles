@@ -1,5 +1,5 @@
 si malhonneteetfortalorsriche;
-18si parents_richesetintelligentalorsriche;
+si parents_richesetintelligentalorsriche;
 19si travailleuretintelligentalorsriche;
 20si fortune>10000alorsriche;
 21si professi on=medecinalorsriche;
@@ -16,3 +16,36 @@ si malhonneteetfortalorsriche;
 32si poids<50alorsfortune=(2∗fortune_parents)−1;
 33si fortune_parents>10000alorsparents_riches;
 34si travail_par_jour>8alorstravailleur
+
+livre=Orgueil_et_Prejuges ALORS auteur=Jane_Austen
+livre=Shining ALORS auteur=Stephen_King
+livre=Ca ALORS auteur=Stephen_King
+livre=J_irai_cracher_sur_vos_tombes ALORS auteur=Boris_Vian
+livre=Voyage_au_centre_de_la_terre ALORS auteur=Jules_Vernes
+livre=Bonjour_Tristesse ALORS auteur=Francoise_Sagan
+livre=Le_Horla ALORS auteur=Guy_de_Maupassant
+livre=Therese_Raquin ALORS auteur=Emile_Zola
+livre=1984 ALORS style=SF
+livre=Orgueil_et_Prejuges ALORS style=romance
+livre=Shining ALORS style=thriller
+livre=Ca ALORS style=horreur
+livre=J_irai_cracher_sur_vos_tombes ALORS style=thriller
+livre=Voyage_au_centre_de_la_terre ALORS style=aventure
+livre=Bonjour_Tristesse ALORS style=drame
+livre=Le_Horla ALORS style=fantastique
+livre=Therese_Raquin ALORS style=drame
+style=aventure auteur=Jules_Vernes ALORS livre=Voyage_au_centre_de_la_terre
+style=thriller auteur=Stephen_King ALORS livre=Shining
+style=SF auteur=George_Orwell ALORS livre=1984
+style=romance auteur=Jane_Austen ALORS livre=Orgueil_et_Prejuges
+style=horreur auteur=Stephen_King ALORS livre=Ca
+style=thriller auteur=Boris_Vian ALORS livre=J_irai_cracher_sur_vos_tombes
+theme=vengeance auteur=Boris_Vian ALORS livre=J_irai_cracher_sur_vos_tombes
+theme=clown auteur=Stephen_King ALORS livre=Ca
+theme=famille theme=folie auteur=Stephen_King ALORS livre=Shining
+theme=jalousie theme=folie auteur=Emile_Zola ALORS livre=Therese_Raquin
+theme=amour auteur=Jane_Austen ALORS livre=Orgueils_et_Prejuges
+theme=dictature auteur=George_Orwell ALORS livre=1984
+theme=voyage auteur=Jules_Vernes ALORS livre=Voyage_au_centre_de_la_terre
+theme=jalousie theme=famille auteur=Francoise_Sagan ALORS livre=Bonjour_Tristesse
+theme=folie auteur=Guy_de_Maupassant ALORS livre=Le_Horla
