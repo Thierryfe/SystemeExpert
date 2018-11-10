@@ -38,6 +38,19 @@ public class Regle {
 		return cpt;
 		
 	}
+	
+	public int nombreDeConclusion() {
+		int cpt=0;
+		Conclusion conclusionActuelle=conclusion;
+	
+		while(conclusionActuelle!=null) {
+			cpt++;
+			conclusionActuelle=conclusionActuelle.getConclusionEventuelle();
+		}
+		
+		return cpt;
+		
+	}
 	public String toString() {
 		String result="";
 		result+=" Premisse :" + premisse.toString();

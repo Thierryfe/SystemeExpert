@@ -99,6 +99,7 @@ public class Moteur {
 		}
 		return result;
 	}
+	
 	public boolean regleApplicable(List<Regle> baseDeRegles, List<Fait> baseDeFaits) {
 		//on verifie si pour chaque regle il y a une premisse dans la base de faits
 		System.out.println("on va rechercher si une règle est applicable");
@@ -158,7 +159,6 @@ public class Moteur {
 		return result;
 	}
 
-
 	public boolean verificationNumerique(String valeurFait) {
 		try  
 		{  
@@ -170,7 +170,6 @@ public class Moteur {
 		}  
 		return true;
 	}
-
 
 	public boolean verificationFaitNumerique(Fait faitBase,Fait faitCourant) {
 		boolean result=false;
@@ -238,6 +237,89 @@ public class Moteur {
 
 	}
 
+	public void chainageArrière(Fait factToProve) {
+		
+		ArrayList<Regle> rulesTemp = (ArrayList<Regle>) baseDeRegle;
+		ArrayList<Fait> factsTemp =  (ArrayList<Fait>) baseDeFaits;
+		ArrayList<Fait> factsToProve = new ArrayList<Fait>() ;
+		factsToProve.add(factToProve);
 
+		while(!baseDeFaitContientFait(factsTemp,factToProve)) {
+			
+			ArrayList<Regle> ensembleDeRegleValides = (ArrayList<Regle>) baseDeRegle;
+			
+			for (Regle regle : rulesTemp) {
+				
+				int nbrConclusion=0;
+				
+				Conclusion conclusionActuelle=regle.getConclusion();
+				while(conclusionActuelle!=null) {
+					System.out.println("On ajoute la règle applicable.");
+
+					if(verifierFait(factsToProve, conclusionActuelle.getFait())) {
+						nbrConclusion++;
+					}
+					conclusionActuelle=conclusionActuelle.getConclusionEventuelle();
+				}
+				
+				if(nbrConclusion==regle.nombreDeConclusion()) {
+					ensembleDeRegleValides.add(regle);
+				}	
+			}
+			
+			//on verifie si on a des règles valides
+			
+			if(!ensembleDeRegleValides.isEmpty()) {
+				//on parcour les regles valides
+				for (Regle regle : ensembleDeRegleValides) {
+					int nbrPremisse=0;
+					
+					Premisse premisseActuelle=regle.getPremisse();
+					while(premisseActuelle!=null) {
+						System.out.println("On ajoute la règle applicable.");
+
+						if(verifierFait(baseDeFaits, premisseActuelle.getFait())) {
+							nbrPremisse++;
+						}
+						premisseActuelle=premisseActuelle.getPremisseEventuelle();
+					}
+					
+					if(nbrPremisse==regle.nombreDeConclusion()) {
+						Conclusion conclusionActuelle=regle.getConclusion();
+						while(conclusionActuelle!=null) {
+							System.out.println("On ajoute la règle applicable.");
+							baseDeFaits.add(conclusionActuelle.getFait());
+							factsToProve.remove(conclusionActuelle.getFait());
+							
+							conclusionActuelle=conclusionActuelle.getConclusionEventuelle();
+							
+						}
+						
+						baseDeRegle.remove(regle);
+					}
+					else {
+						Premisse premisseActuelleAAjouter=regle.getPremisse();
+						while(premisseActuelleAAjouter!=null) {
+							System.out.println("On ajoute la règle applicable.");
+							factsToProve.add(premisseActuelleAAjouter.getFait());
+							premisseActuelleAAjouter=premisseActuelleAAjouter.getPremisseEventuelle();
+						}
+						
+					}
+				}
+			}
+			else{
+				//sinon on break le while
+				break;
+			}
+		}
+		
+
+		if(bdFContientFait(factsTemp,factToProve)) {	
+			System.out.println(" fact is proved.");
+		}else {
+			System.out.println(" fact is wrong.");
+		}
+	}
 
 }
