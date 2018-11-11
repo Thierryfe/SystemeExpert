@@ -243,10 +243,11 @@ public class Moteur {
 		ArrayList<Fait> factsTemp =  (ArrayList<Fait>) baseDeFaits;
 		ArrayList<Fait> factsToProve = new ArrayList<Fait>() ;
 		factsToProve.add(factToProve);
-
+		
+		System.out.println("Base de fait à l'état initial : "+factsTemp);
 		while(!baseDeFaitContientFait(factsTemp,factToProve)) {
 			
-			ArrayList<Regle> ensembleDeRegleValides = (ArrayList<Regle>) baseDeRegle;
+			ArrayList<Regle> ensembleDeRegleValides = new ArrayList<Regle>();
 			
 			for (Regle regle : rulesTemp) {
 				
@@ -254,8 +255,6 @@ public class Moteur {
 				
 				Conclusion conclusionActuelle=regle.getConclusion();
 				while(conclusionActuelle!=null) {
-					System.out.println("On ajoute la règle applicable.");
-
 					if(verifierFait(factsToProve, conclusionActuelle.getFait())) {
 						nbrConclusion++;
 					}
@@ -263,6 +262,7 @@ public class Moteur {
 				}
 				
 				if(nbrConclusion==regle.nombreDeConclusion()) {
+					System.out.println("On ajoute la regle valide : "+regle.toString());
 					ensembleDeRegleValides.add(regle);
 				}	
 			}
@@ -276,32 +276,33 @@ public class Moteur {
 					
 					Premisse premisseActuelle=regle.getPremisse();
 					while(premisseActuelle!=null) {
-						System.out.println("On ajoute la règle applicable.");
 
-						if(verifierFait(baseDeFaits, premisseActuelle.getFait())) {
+						if(verifierFait(factsTemp, premisseActuelle.getFait())) {
 							nbrPremisse++;
 						}
 						premisseActuelle=premisseActuelle.getPremisseEventuelle();
 					}
 					
-					if(nbrPremisse==regle.nombreDeConclusion()) {
+					if(nbrPremisse==regle.nombreDePremisse()) {
+						System.out.println("Premisse de la règle en base de fait !");
 						Conclusion conclusionActuelle=regle.getConclusion();
 						while(conclusionActuelle!=null) {
-							System.out.println("On ajoute la règle applicable.");
-							baseDeFaits.add(conclusionActuelle.getFait());
+							System.out.println("On ajoute la conclusion en base de fait : "+conclusionActuelle.getFait().toString());
+							factsTemp.add(conclusionActuelle.getFait());
 							factsToProve.remove(conclusionActuelle.getFait());
 							
 							conclusionActuelle=conclusionActuelle.getConclusionEventuelle();
 							
 						}
 						
-						baseDeRegle.remove(regle);
+						rulesTemp.remove(regle);
 					}
 					else {
 						Premisse premisseActuelleAAjouter=regle.getPremisse();
 						while(premisseActuelleAAjouter!=null) {
-							System.out.println("On ajoute la règle applicable.");
+							//System.out.println("On ajoute a la base de faits, la premisse : "+premisseActuelleAAjouter.getFait());
 							factsToProve.add(premisseActuelleAAjouter.getFait());
+							//System.out.println("Base de fait apres injection : "+factsToProve);
 							premisseActuelleAAjouter=premisseActuelleAAjouter.getPremisseEventuelle();
 						}
 						
@@ -313,7 +314,7 @@ public class Moteur {
 				break;
 			}
 		}
-		
+		System.out.println("La base de faits à l'état final contient : "+factsTemp.toString());
 
 		if(bdFContientFait(factsTemp,factToProve)) {	
 			System.out.println(" fact is proved.");

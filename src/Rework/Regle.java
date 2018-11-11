@@ -53,8 +53,8 @@ public class Regle {
 	}
 	public String toString() {
 		String result="";
-		result+=" Premisse :" + premisse.toString();
-		result+=" Conclusion :" + conclusion.toString();
+		result+="\n Premisse(s) :" + premisse.toString();
+		result+="\n Conclusion(s) :" + conclusion.toString();
 		return result;
 	}
 }

@@ -28,9 +28,9 @@ public class Premisse {
 	}
 	
 	public String toString() {
-		String result="Fait : "+fait.getNom()+" valeur : "+fait.getValue() +" operateur : "+fait.getOperator().toString();
+		String result="\n["+fait.getNom() +" "+fait.getOperator().toString()+" "+fait.getValue()+"]";
 		if(premisseEventuelle!=null)
-			result+="Fait suivant :"+premisseEventuelle.toString();
+			result+=premisseEventuelle.toString();
 		return result;
 	}
 }

@@ -23,9 +23,9 @@ public class Conclusion {
 		this.conclusionEventuelle = conclusionEventuelle;
 	}
 	public String toString() {
-		String result="Fait : "+fait.getNom()+" valeur : "+fait.getValue() +" operateur : "+fait.getOperator().toString();
+		String result="\n["+fait.getNom() +" "+fait.getOperator().toString()+" "+fait.getValue()+"]";
 		if(conclusionEventuelle!=null)
-			result+="Fait suivant :"+conclusionEventuelle.toString();
+			result+=conclusionEventuelle.toString();
 		return result;
 	}
 	
