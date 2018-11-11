@@ -13,27 +13,35 @@ public class Moteur {
 		this.baseDeRegle = baseDeRegle;
 	}
 
-	public void chainageAvant(Fait factToProve) {
+	public void chainageAvant(Fait factToProve, boolean trace) {
 
 		ArrayList<Regle> rulesTemp = new ArrayList<Regle>(baseDeRegle);
 		ArrayList<Fait> factsTemp = new ArrayList<Fait>(baseDeFaits);
 
-		System.out.println("Starting forwardchaining...");
+		if (trace) {
+			System.out.println("\nStarting forwardchaining...");
+			System.out.println("\nBases status :");
+			System.out.println("\t" + factsTemp.size() + " facts in fact base ! " + factsTemp);
 
-		System.out.println(factsTemp.size() + " facts in fact base ! " + factsTemp);
-
-		System.out.println(rulesTemp.size() + " rules in rule base ! ");
-
-		System.out.println("Target : " + factToProve.toString());
-
-		System.out.println("on entre pas  dans la boucle principale");
+			System.out.println("\t" + rulesTemp.size() + " rules in rule base ! ");
+			
+		}
+		System.out.println("Fact to prove : " + factToProve.toString());
+		int iteration = 0;
 		while (!bdFContientFait(factsTemp, factToProve) && regleApplicable(rulesTemp, factsTemp)) {
-			System.out.println("on entre dans la boucle principale");
+			if (trace)
+				System.out.println("\nNumber of iteration : " + ++iteration);
 			// on prepare la rï¿½gle applicable
 			Regle applicableRule = null;
 			// on cherche une rï¿½gle applicable dans la base de rï¿½gle
+			if (trace)
+				System.out.println("Checking rules of the rules base :");
+			int nbrOfRule = 0;
 			for (Regle ruleTocheck : rulesTemp) {
-				System.out.println("on veut verifier la règle : " + ruleTocheck.toString());
+				if (trace) {
+					System.out.println("Checking rule number " + ++nbrOfRule);
+					System.out.println("Rule contains : " + ruleTocheck);
+				}
 				// System.out.println("on parcours les règles, on est sur :
 				// "+ruleTocheck.toString());
 				// si on trouve une rï¿½gle applicable donc une prémisse de cette règles dans la
@@ -43,21 +51,26 @@ public class Moteur {
 				// on retire cette rï¿½gle de la base de rï¿½gle
 				// on stop le for
 				// on ajoute la conclusion de cette rï¿½gle ï¿½ la base de fait
-				System.out.println("La regle possède : " + ruleTocheck.nombreDePremisse() + " premisses");
+				if (trace)
+					System.out.println("Checking Premisse(s)");
 				Premisse premisseActuelle = ruleTocheck.getPremisse();
 				int nombreDePremisseValide = 0;
 				while (premisseActuelle != null) {
 					if (baseDeFaitContientFait(factsTemp, premisseActuelle.getFait())) {
 						if (verifierFait(factsTemp, premisseActuelle.getFait())) {
 							nombreDePremisseValide++;
-							System.out.println("La premisse est juste on passe aux eventuelles suivantes");
+
 						}
+						if (trace)
+							System.out.println("\t\t" + nombreDePremisseValide + "/" + ruleTocheck.nombreDePremisse()
+									+ " Premisse(s) validated.");
 					}
 					premisseActuelle = premisseActuelle.getPremisseEventuelle();
 				}
 				// si on trouve une règle applicable alors on stop la recherche
 				if ((nombreDePremisseValide == ruleTocheck.nombreDePremisse()) && nombreDePremisseValide > 0) {
-					System.out.println("La règle est applicable.");
+					if (trace)
+						System.out.println("\tAll premisse(s) validated, rule is applicable.");
 					applicableRule = ruleTocheck;
 					break;
 				}
@@ -66,28 +79,35 @@ public class Moteur {
 			// si il y une règle applicable on la retire de la liste des règles et on ajoute
 			// les consequences à la base de fait
 			if (applicableRule != null) {
+				if (trace)
+					System.out.println("\tRemoving rule from rules base.");
 				rulesTemp.remove(applicableRule);
 				Conclusion conclusionActuelle = applicableRule.getConclusion();
+				int nbrConclusion = 0;
 				while (conclusionActuelle != null) {
-					System.out.println("On ajoute la règle applicable.");
+					if (trace)
+						System.out.println("\tAdding conclusion(s) of this rule in facts base (" + nbrConclusion + "/"
+								+ applicableRule.nombreDeConclusion() + ").");
 					factsTemp.add(conclusionActuelle.getFait());
 					conclusionActuelle = conclusionActuelle.getConclusionEventuelle();
 				}
 			}
 
-			System.out.println("Algo relancé /////////////////////////////////////////////////////////");
-			// break;
 		}
-		System.out.println(factsTemp.size() + " facts in fact base ! " + factsTemp.toString());
-
-		System.out.println(rulesTemp.size() + " rules in rule base ! ");
-
+		System.out.println("\n///////////////////////////////////////////////////////////////////");
+		System.out.println("\nForward chaining finished with result :");
+		if (trace) {
+			System.out.println("Bases status :");
+			System.out.println("\t" + factsTemp.size() + " facts in fact base ! " + factsTemp.toString());
+			System.out.println("\t" + rulesTemp.size() + " rules in rule base ! ");
+		}
+		System.out.println("Result :");
 		if (bdFContientFait(factsTemp, factToProve)) {
-			System.out.println(" fact is proved.");
+			System.out.println("\tFact is correct !");
 		} else {
-			System.out.println(" fact is wrong.");
+			System.out.println("\tFact is wrong !");
 		}
-
+		System.out.println("\n///////////////////////////////////////////////////////////////////");
 	}
 
 	public boolean bdFContientFait(List<Fait> baseDeFaits, Fait fait) {
@@ -103,7 +123,7 @@ public class Moteur {
 
 	public boolean regleApplicable(List<Regle> baseDeRegles, List<Fait> baseDeFaits) {
 		// on verifie si pour chaque regle il y a une premisse dans la base de faits
-		System.out.println("on va rechercher si une règle est applicable");
+		// System.out.println("on va rechercher si une règle est applicable");
 		for (Regle regle : baseDeRegles) {
 
 			for (Fait fait : baseDeFaits) {
@@ -113,7 +133,7 @@ public class Moteur {
 					// System.out.println("On compare : "+premisse.getFait().getNom() ==
 					// fait.getNom());
 					if (premisse.getFait().getNom().equals(fait.getNom())) {
-						System.out.println("il reste des regles applicable.");
+						// System.out.println("il reste des regles applicable.");
 						return true;
 					}
 					premisse = premisse.getPremisseEventuelle();
@@ -121,7 +141,7 @@ public class Moteur {
 
 			}
 		}
-		System.out.println("Pas de règle applicable");
+		// System.out.println("Pas de règle applicable");
 		return false;
 	}
 
@@ -234,7 +254,7 @@ public class Moteur {
 
 	}
 
-	public void chainageArrière(Fait factToProve) {
+	public void chainageArrière(Fait factToProve, boolean trace) {
 
 		ArrayList<Regle> rulesTemp = new ArrayList<Regle>(baseDeRegle);
 		ArrayList<Fait> factsTemp = new ArrayList<Fait>(baseDeFaits);

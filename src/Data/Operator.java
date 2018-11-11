@@ -17,6 +17,20 @@ public enum Operator {
 
 	EQUAL,
 
-	DIFFERENT
+	DIFFERENT;
+	
+
+	  @Override
+	  public String toString() {
+	    switch(this) {
+	      case SUPERIOR: return ">";
+	      case SUPERIOR_OR_EQUAL: return ">=";
+	      case INFERIOR: return "<";
+	      case INFERIOR_OR_EQUAL: return "<=";
+	      case EQUAL: return "=";
+	      case DIFFERENT: return "!=";
+	      default: throw new IllegalArgumentException();
+	    }
+	  }
 
 }

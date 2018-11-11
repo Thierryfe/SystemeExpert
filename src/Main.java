@@ -35,17 +35,43 @@ public class Main {
 
 		try {
 			while(true) {
-				System.out.println("1. Start forward chaining");
+				System.out.println("\n1. Start forward chaining");
 				System.out.println("2. Start backward chaining");
-				System.out.println("3. Exit");
+				System.out.println("3. Exit  \n");
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				String line = reader.readLine();
 
 				if(line.equals("1")) {
-					m.chainageAvant(butMenu());
+					boolean isTrace=false;
+					while(true) {
+						System.out.println("Enable trace ?(Y/N)");
+						line=reader.readLine();
+						
+						if(line.equals("Y")) {
+							isTrace=true;
+							break;
+						}
+						if(line.equals("N")) {
+							break;
+						}
+					}
+					m.chainageAvant(butMenu(),isTrace);
 				}
 				else if(line.equals("2")) {
-					m.chainageArrière(butMenu());
+					boolean isTrace=false;
+					while(true) {
+						System.out.println("Enable trace ?(Y/N)");
+						line=reader.readLine();
+						
+						if(line.equals("Y")) {
+							isTrace=true;
+							break;
+						}
+						if(line.equals("N")) {
+							break;
+						}
+					}
+					m.chainageArrière(butMenu(),isTrace);
 					
 				}else if(line.equals("3")) {
 					System.out.println("Expert system app closed.");
@@ -53,7 +79,7 @@ public class Main {
 					
 				}
 				else {
-					System.out.println("Incorrect input.");
+					System.out.println("Incorrect input.  \n");
 				}
 
 			}
@@ -69,7 +95,7 @@ public class Main {
 	public static Fait butMenu() {
 		Fait butResult=null;
 		while(true) {
-			System.out.println(" Use default fact  ?(Y/N)");
+			System.out.println(" Use default fact  ?(Y/N) \n");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			String line;
 			try {
@@ -80,7 +106,7 @@ public class Main {
 				}
 				else if(line.equals("N")) {
 					while(true) {
-						System.out.println("Name of the fact :");
+						System.out.println("Name of the fact : \n");
 						String nameLine;
 						nameLine = reader.readLine();
 						String operatorLine;
@@ -91,7 +117,7 @@ public class Main {
 							System.out.println("3. =");
 							System.out.println("4. <=");
 							System.out.println("5. >=");
-							System.out.println("6. !=");
+							System.out.println("6. !=  \n");
 
 							;
 							operatorLine = reader.readLine();
@@ -122,22 +148,22 @@ public class Main {
 								System.out.println("Incorrect input.");
 							}
 						}
-						System.out.println("Value of the fact :");
+						System.out.println("Value of the fact :\n");
 						String valueLine;
 						valueLine=reader.readLine();
 						
 						
 						while(true) {
 							System.out.println("Fact : "+nameLine+" "+operatorLine+" "+valueLine);
-							System.out.println("It is correct ?(Y/N)");
+							System.out.println("It is correct ?(Y/N)\n");
 							line=reader.readLine();
 							if(line.equals("Y")) {
 								butResult= new Fait(nameLine,operatorLine,valueLine);
 								break;
 							}else if(line.equals("N")) {
-								System.out.println("Reseting inputs...");
+								System.out.println("Reseting inputs...\n");
 							}else {
-								System.out.println("Incorrect input.");
+								System.out.println("Incorrect input.\n");
 							}
 						}
 						if(butResult!=null)
