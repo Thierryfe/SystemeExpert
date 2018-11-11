@@ -24,7 +24,7 @@ public class Moteur {
 			System.out.println("\t" + factsTemp.size() + " facts in fact base ! " + factsTemp);
 
 			System.out.println("\t" + rulesTemp.size() + " rules in rule base ! ");
-			
+
 		}
 		System.out.println("Fact to prove : " + factToProve.toString());
 		int iteration = 0;
@@ -35,7 +35,7 @@ public class Moteur {
 			Regle applicableRule = null;
 			// on cherche une rï¿½gle applicable dans la base de rï¿½gle
 			if (trace)
-				System.out.println("Checking rules of the rules base :");
+				System.out.println("Checking rules of the rules base with premisse(s) in facts base :");
 			int nbrOfRule = 0;
 			for (Regle ruleTocheck : rulesTemp) {
 				if (trace) {
@@ -261,36 +261,59 @@ public class Moteur {
 		ArrayList<Fait> factsToProve = new ArrayList<Fait>();
 		factsToProve.add(factToProve);
 
-		System.out.println("Base de fait à l'état initial : " + factsTemp);
+		if (trace) {
+			System.out.println("\nStarting backward chaining...");
+			System.out.println("\nBases status :");
+			System.out.println("\t" + factsTemp.size() + " facts in fact base ! " + factsTemp);
+
+			System.out.println("\t" + rulesTemp.size() + " rules in rule base ! ");
+
+		}
+		System.out.println("Fact to prove : " + factToProve.toString());
+
 		while (!baseDeFaitContientFait(factsTemp, factToProve)) {
 
 			ArrayList<Regle> ensembleDeRegleValides = new ArrayList<Regle>();
-
+			if (trace)
+				System.out.println("Checking rules of the rules base with conclusion(s) in facts to prove base :");
+			int nbrOfRule = 0;
 			for (Regle regle : rulesTemp) {
-
+				if (trace) {
+					System.out.println("Checking rule number " + ++nbrOfRule);
+					System.out.println("Rule contains : " + regle);
+				}
 				int nbrConclusion = 0;
-
+				if (trace)
+					System.out.println("Checking conclusion(s)");
 				Conclusion conclusionActuelle = regle.getConclusion();
 				while (conclusionActuelle != null) {
 					if (verifierFait(factsToProve, conclusionActuelle.getFait())) {
 						nbrConclusion++;
 					}
+					if (trace)
+						System.out.println(
+								"\t\t" + nbrConclusion + "/" + regle.nombreDePremisse() + " Conclusion(s) validated.");
 					conclusionActuelle = conclusionActuelle.getConclusionEventuelle();
 				}
 
 				if (nbrConclusion == regle.nombreDeConclusion()) {
-					System.out.println("On ajoute la regle valide : " + regle.toString());
+					if (trace)
+						System.out
+								.println("\tAll Conclusion(s) validated, rule is valid and added to valid rules list.");
 					ensembleDeRegleValides.add(regle);
 				}
 			}
 
 			// on verifie si on a des règles valides
-
+			if (trace)
+				System.out.println(
+						"\nChecking if valid rules list, contains valid premisses according to the facts base.");
 			if (!ensembleDeRegleValides.isEmpty()) {
 				// on parcour les regles valides
 				for (Regle regle : ensembleDeRegleValides) {
 					int nbrPremisse = 0;
-
+					if(trace)
+						System.out.println("\t Valid Rule : "+regle);
 					Premisse premisseActuelle = regle.getPremisse();
 					while (premisseActuelle != null) {
 
@@ -301,11 +324,12 @@ public class Moteur {
 					}
 
 					if (nbrPremisse == regle.nombreDePremisse()) {
-						System.out.println("Premisse de la règle en base de fait !");
+						if (trace)
+							System.out.println("\tPremisse(s) of this rule are in facts base.");
 						Conclusion conclusionActuelle = regle.getConclusion();
 						while (conclusionActuelle != null) {
-							System.out.println("On ajoute la conclusion en base de fait : "
-									+ conclusionActuelle.getFait().toString());
+							if (trace)
+								System.out.println("\tAdding conclusion(s) of this rule in facts base.");
 							factsTemp.add(conclusionActuelle.getFait());
 							factsToProve.remove(conclusionActuelle.getFait());
 
@@ -316,28 +340,38 @@ public class Moteur {
 						rulesTemp.remove(regle);
 					} else {
 						Premisse premisseActuelleAAjouter = regle.getPremisse();
+						if (trace)
+							System.out.println("\tPremisse(s) of this rule are not facts base.");
 						while (premisseActuelleAAjouter != null) {
-							// System.out.println("On ajoute a la base de faits, la premisse :
-							// "+premisseActuelleAAjouter.getFait());
+							if (trace)
+								System.out.println("\tAdding premisse(s) of this rule in facts to prove base.");
 							factsToProve.add(premisseActuelleAAjouter.getFait());
-							// System.out.println("Base de fait apres injection : "+factsToProve);
 							premisseActuelleAAjouter = premisseActuelleAAjouter.getPremisseEventuelle();
 						}
 
 					}
 				}
 			} else {
+				if (trace)
+					System.out.println("\tNo valid rules.");
 				// sinon on break le while
 				break;
 			}
 		}
-		System.out.println("La base de faits à l'état final contient : " + factsTemp.toString());
-
-		if (bdFContientFait(factsTemp, factToProve)) {
-			System.out.println("Fait prouvé !");
-		} else {
-			System.out.println("Fait incorrect !");
+		System.out.println("\n///////////////////////////////////////////////////////////////////");
+		System.out.println("\nBackward chaining finished with result :");
+		if (trace) {
+			System.out.println("Bases status :");
+			System.out.println("\t" + factsTemp.size() + " facts in fact base ! " + factsTemp.toString());
+			System.out.println("\t" + rulesTemp.size() + " rules in rule base ! ");
 		}
+		System.out.println("Result :");
+		if (bdFContientFait(factsTemp, factToProve)) {
+			System.out.println("\tFact is correct !");
+		} else {
+			System.out.println("\tFact is wrong !");
+		}
+		System.out.println("\n///////////////////////////////////////////////////////////////////");
 	}
 
 }
