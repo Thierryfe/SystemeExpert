@@ -5,11 +5,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Data.Fact;
-import Rework.CreateBaseDeRegle;
-import Rework.Fait;
-import Rework.Moteur;
-import Rework.Regle;
+import Moteur.CreateBaseDeRegle;
+import Moteur.Fait;
+import Moteur.Moteur;
+import Moteur.Regle;
 
 public class Main {
 	/**

@@ -1,4 +1,4 @@
-package Rework;
+package Moteur;
 
 public class Premisse {
 	public Fait fait;

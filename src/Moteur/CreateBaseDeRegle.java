@@ -1,4 +1,4 @@
-package Rework;
+package Moteur;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import Data.Rule;
-import Data.RulesBase;
 
 public class CreateBaseDeRegle {
 	private File file;
