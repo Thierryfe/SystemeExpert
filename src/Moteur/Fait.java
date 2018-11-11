@@ -1,13 +1,18 @@
-package Rework;
+package Moteur;
 
 import Data.Operator;
 
+/**
+ *   Classe modélisant un fait, composé d'un nom d'un opérateur et
+ *         d'une valeur 
+ *         Exemple : livre = Les_enfants_de_Hurin
+ */
 public class Fait {
-	
+
 	public String nom;
 	public Operator operator;
 	public String value;
-	
+
 	public Fait(String nom, String operator, String value) {
 		super();
 		this.nom = nom;
@@ -38,34 +43,33 @@ public class Fait {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
+
 	public Operator setOperator(String operator) {
-		if(operator.equals(">=")) {
+		if (operator.equals(">=")) {
 			return Operator.SUPERIOR_OR_EQUAL;
 		}
-		if(operator.equals(">")) {
+		if (operator.equals(">")) {
 			return Operator.SUPERIOR;
 		}
-		if(operator.equals("<=")) {
+		if (operator.equals("<=")) {
 			return Operator.INFERIOR_OR_EQUAL;
 		}
-		if(operator.equals("<")) {
+		if (operator.equals("<")) {
 			return Operator.INFERIOR;
 		}
-		if(operator.equals("=")) {
-			
+		if (operator.equals("=")) {
+
 			return Operator.EQUAL;
 		}
-		if(operator.equals("!=")) {
+		if (operator.equals("!=")) {
 			return Operator.DIFFERENT;
 		}
-		
+
 		return null;
 	}
-	
+
 	public String toString() {
-		return nom +" "+ operator+" "+ value;
+		return nom + " " + operator + " " + value;
 	}
-	
-	
+
 }
