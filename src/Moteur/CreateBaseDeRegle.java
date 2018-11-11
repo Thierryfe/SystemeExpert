@@ -12,6 +12,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+/**
+ * 
+ *
+ * Classe permettant de generer une base de règle à partir d'un fichier texte, il s'agit donc d'un parser
+ * le format d'une règle est considéré comme ceci : premisse(s) ALORS conclusion(s)
+ * les premissses et les conclusions peuvent liés entre elle avec l'opérateur && représenté par un espace 
+ */
 public class CreateBaseDeRegle {
 	private File file;
 	private ArrayList<Regle> baseDeRegle;
@@ -30,15 +37,11 @@ public class CreateBaseDeRegle {
 			try {
 				Pattern p = Pattern.compile("^([a-zA-Z0-9_]+)(<|>|=|>=|<=)([a-zA-Z0-9_]+)$");
 				String line = br.readLine();
-			//	System.out.println("ligne à parser : "+line);
 				while(line != null) {
 					Regle rule = new Regle();
 					String[] result = line.split(" ALORS ");
 					String[] premise = result[0].split(" ");
 					String[] consequence = result[1].split(" ");
-				//	System.out.println("Result trouvé : "+result[0]);
-				//	System.out.println("Premisse trouvé : "+premise[1]);
-				//	System.out.println("Concluision trouvé : "+consequence[0]);
 					Premisse premissesPrincipale= null;
 					Premisse premissesSuivante= null;
 					for(String s : premise) {
