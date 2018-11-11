@@ -17,8 +17,8 @@ public class Moteur {
 
 	public void chainageAvant(Fait factToProve) {
 
-		ArrayList<Regle> rulesTemp = (ArrayList<Regle>) baseDeRegle;
-		ArrayList<Fait> factsTemp =  (ArrayList<Fait>) baseDeFaits;
+		ArrayList<Regle> rulesTemp = new ArrayList<Regle> (baseDeRegle);
+		ArrayList<Fait> factsTemp =  new ArrayList<Fait> (baseDeFaits);
 
 		
 		System.out.println("Starting forwardchaining...");
@@ -239,8 +239,8 @@ public class Moteur {
 
 	public void chainageArrière(Fait factToProve) {
 		
-		ArrayList<Regle> rulesTemp = (ArrayList<Regle>) baseDeRegle;
-		ArrayList<Fait> factsTemp =  (ArrayList<Fait>) baseDeFaits;
+		ArrayList<Regle> rulesTemp = new ArrayList<Regle> (baseDeRegle);
+		ArrayList<Fait> factsTemp =  new ArrayList<Fait> (baseDeFaits);
 		ArrayList<Fait> factsToProve = new ArrayList<Fait>() ;
 		factsToProve.add(factToProve);
 		
