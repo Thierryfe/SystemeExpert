@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Moteur {
+<<<<<<< HEAD
 	ArrayList<Fait> baseDeFaits;
 	ArrayList<Regle> baseDeRegle;
 	CreerBaseIncoherence baseIncoherence;
+=======
+	public ArrayList<Fait> baseDeFaits;
+	public ArrayList<Regle> baseDeRegle;
+>>>>>>> branch 'master' of https://github.com/Thierryfe/SystemeExpert.git
 
 	public Moteur(ArrayList<Fait> baseDeFaits, ArrayList<Regle> baseDeRegle) {
 		super();
