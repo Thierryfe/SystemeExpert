@@ -57,14 +57,19 @@ public class Moteur {
 				int nombreDePremisseValide = 0;
 				while (premisseActuelle != null) {
 					if (baseDeFaitContientFait(factsTemp, premisseActuelle.getFait())) {
-						if (verifierFait(factsTemp, premisseActuelle.getFait())) {
+						if (trace) {
+							System.out.println("Checking Fact :");
+							System.out.println(premisseActuelle.getFait().toString());}
+						if (verifierFait(factsTemp, premisseActuelle.getFait(),trace)) {
+
 							nombreDePremisseValide++;
 
 						}
 						if (trace)
 							System.out.println("\t\t" + nombreDePremisseValide + "/" + ruleTocheck.nombreDePremisse()
-									+ " Premisse(s) validated.");
+							+ " Premisse(s) validated.");
 					}
+
 					premisseActuelle = premisseActuelle.getPremisseEventuelle();
 				}
 				// si on trouve une règle applicable alors on stop la recherche
@@ -73,7 +78,8 @@ public class Moteur {
 						System.out.println("\tAll premisse(s) validated, rule is applicable.");
 					applicableRule = ruleTocheck;
 					break;
-				}
+				}//si on trouve une règle applicable
+
 
 			}
 			// si il y une règle applicable on la retire de la liste des règles et on ajoute
@@ -85,12 +91,16 @@ public class Moteur {
 				Conclusion conclusionActuelle = applicableRule.getConclusion();
 				int nbrConclusion = 0;
 				while (conclusionActuelle != null) {
+					nbrConclusion++;
 					if (trace)
 						System.out.println("\tAdding conclusion(s) of this rule in facts base (" + nbrConclusion + "/"
 								+ applicableRule.nombreDeConclusion() + ").");
 					factsTemp.add(conclusionActuelle.getFait());
 					conclusionActuelle = conclusionActuelle.getConclusionEventuelle();
 				}
+			}
+			else {
+				break;
 			}
 
 		}
@@ -145,21 +155,26 @@ public class Moteur {
 		return false;
 	}
 
-	public boolean verifierFait(List<Fait> baseDeFaits, Fait faitCourant) {
+	public boolean verifierFait(List<Fait> baseDeFaits, Fait faitCourant, boolean trace) {
 
 		boolean result = false;
 
 		for (Fait fait : baseDeFaits) {
+
 			if (fait.getNom().equals(faitCourant.getNom())) {
+
 				// on verifie si c'est un chiffre ou un string
 				if (verificationNumerique(faitCourant.getValue()) == verificationNumerique(fait.getValue())) {
+
 					if (verificationNumerique(faitCourant.getValue())) {
 
-						result = verificationFaitNumerique(fait, faitCourant);
+						result = verificationFaitNumerique(fait, faitCourant,trace);
 					} else {
 
-						result = verificationFaitString(fait, faitCourant);
+						result = verificationFaitString(fait, faitCourant,trace);
 					}
+					if(result)
+						break;
 				} else {
 					return result;
 				}
@@ -188,7 +203,7 @@ public class Moteur {
 		return true;
 	}
 
-	public boolean verificationFaitNumerique(Fait faitBase, Fait faitCourant) {
+	public boolean verificationFaitNumerique(Fait faitBase, Fait faitCourant, boolean trace) {
 		boolean result = false;
 		Double valeurFaitBase = Double.parseDouble(faitBase.getValue());
 		Double valeurFaitCourant = Double.parseDouble(faitCourant.getValue());
@@ -222,9 +237,11 @@ public class Moteur {
 
 	}
 
-	public boolean verificationFaitString(Fait faitBase, Fait faitCourant) {
+	public boolean verificationFaitString(Fait faitBase, Fait faitCourant,boolean trace) {
 		boolean result = false;
 
+		if (trace)
+			System.out.println("Comparing fact :"+faitBase.getValue()+" "+faitCourant.getOperator()+" "+ faitCourant.getValue());
 		switch (faitCourant.getOperator()) {
 
 		case SUPERIOR:
@@ -287,7 +304,7 @@ public class Moteur {
 					System.out.println("Checking conclusion(s)");
 				Conclusion conclusionActuelle = regle.getConclusion();
 				while (conclusionActuelle != null) {
-					if (verifierFait(factsToProve, conclusionActuelle.getFait())) {
+					if (verifierFait(factsToProve, conclusionActuelle.getFait(),trace)) {
 						nbrConclusion++;
 					}
 					if (trace)
@@ -299,7 +316,7 @@ public class Moteur {
 				if (nbrConclusion == regle.nombreDeConclusion()) {
 					if (trace)
 						System.out
-								.println("\tAll Conclusion(s) validated, rule is valid and added to valid rules list.");
+						.println("\tAll Conclusion(s) validated, rule is valid and added to valid rules list.");
 					ensembleDeRegleValides.add(regle);
 				}
 			}
@@ -317,7 +334,7 @@ public class Moteur {
 					Premisse premisseActuelle = regle.getPremisse();
 					while (premisseActuelle != null) {
 
-						if (verifierFait(factsTemp, premisseActuelle.getFait())) {
+						if (verifierFait(factsTemp, premisseActuelle.getFait(),trace)) {
 							nbrPremisse++;
 						}
 						premisseActuelle = premisseActuelle.getPremisseEventuelle();

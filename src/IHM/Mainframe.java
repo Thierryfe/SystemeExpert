@@ -35,6 +35,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 
@@ -324,6 +326,13 @@ public class Mainframe extends javax.swing.JFrame {
 		jTextArea1.setRows(5);
 
 		button = new JButton("Reset facts base");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				baseDeFait=new ArrayList<Fait>();
+				printRulesAndFact();
+			}
+		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -335,73 +344,73 @@ public class Mainframe extends javax.swing.JFrame {
 		lblFactToProve = new JLabel("Fact to prove :");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(10)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGap(10)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(jLabel2)
+							.addGap(224)
+							.addComponent(lblFactToProve, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+							.addGap(207)
+							.addComponent(jLabel5)
+							.addGap(268)
+							.addComponent(jLabel3))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(jLabel2)
-										.addGap(224)
-										.addComponent(lblFactToProve, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-										.addGap(219)
-										.addComponent(jLabel5)
-										.addGap(268)
-										.addComponent(jLabel3))
+									.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(panel, GroupLayout.PREFERRED_SIZE, 271, GroupLayout.PREFERRED_SIZE)
+									.addGap(24)
+									.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(jCheckBox2))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 561, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addGroup(groupLayout.createSequentialGroup()
-														.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-														.addGap(18)
-														.addComponent(panel, GroupLayout.PREFERRED_SIZE, 271, GroupLayout.PREFERRED_SIZE)
-														.addGap(24)
-														.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-												.addComponent(jCheckBox2))
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 561, GroupLayout.PREFERRED_SIZE)
-												.addGroup(groupLayout.createSequentialGroup()
-														.addGap(4)
-														.addComponent(jLabel4)
-														.addGap(10)
-														.addComponent(button))))
-								.addGroup(groupLayout.createSequentialGroup()
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 971, GroupLayout.PREFERRED_SIZE)
-										.addGap(10)
-										.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 561, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap())
-				);
+									.addGap(4)
+									.addComponent(jLabel4)
+									.addGap(10)
+									.addComponent(button))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 971, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 561, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
 		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(16)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(jLabel2)
-								.addComponent(lblFactToProve)
-								.addComponent(jLabel5)
-								.addComponent(jLabel3))
-						.addGap(6)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGap(16)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(jLabel2)
+						.addComponent(jLabel5)
+						.addComponent(jLabel3)
+						.addComponent(lblFactToProve))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)
-										.addGap(6)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addGroup(groupLayout.createSequentialGroup()
-														.addGap(4)
-														.addComponent(jLabel4))
-												.addComponent(button)))
-								.addGroup(groupLayout.createSequentialGroup()
-										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-												.addComponent(jPanel2, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-												.addComponent(jPanel1, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-												.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(jCheckBox2)))
-						.addGap(9)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
-								.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)))
-				);
+									.addGap(4)
+									.addComponent(jLabel4))
+								.addComponent(button)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(jPanel2, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+								.addComponent(jPanel1, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+								.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(jCheckBox2)))
+					.addGap(9)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)))
+		);
 
 		label = new JLabel();
 		label.setText("Fact");
