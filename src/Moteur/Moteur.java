@@ -6,15 +6,18 @@ import java.util.List;
 public class Moteur {
 	ArrayList<Fait> baseDeFaits;
 	ArrayList<Regle> baseDeRegle;
+	CreerBaseIncoherence baseIncoherence;
 
 	public Moteur(ArrayList<Fait> baseDeFaits, ArrayList<Regle> baseDeRegle) {
 		super();
 		this.baseDeFaits = baseDeFaits;
 		this.baseDeRegle = baseDeRegle;
+		this.baseIncoherence = new CreerBaseIncoherence("Incoherence");
 	}
 
 	public void chainageAvant(Fait factToProve, boolean trace) {
 
+		
 		ArrayList<Regle> rulesTemp = new ArrayList<Regle>(baseDeRegle);
 		ArrayList<Fait> factsTemp = new ArrayList<Fait>(baseDeFaits);
 
