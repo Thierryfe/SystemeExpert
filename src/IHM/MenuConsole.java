@@ -16,6 +16,10 @@ public class MenuConsole {
 		CreateBaseDeRegle rb = new CreateBaseDeRegle("Rules");
 		rb.generateRuleBased();
 
+		CreerBaseIncoherence baseIncoherence = new CreerBaseIncoherence("Incoherence");
+		baseIncoherence.genererBaseIncoherence();
+		System.out.println(baseIncoherence.compare(rb.getRulesBase()));
+		
 		ArrayList<Regle>baseDeRegle=rb.getRulesBase();
 
 		ArrayList<Fait>baseDeFait= new ArrayList<Fait>();
