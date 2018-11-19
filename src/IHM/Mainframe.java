@@ -567,14 +567,7 @@ public class Mainframe extends javax.swing.JFrame {
 	private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {                                      
 		// TODO add your handling code here:*
 		if(!txtLivre.getText().isEmpty()&&!txtJiraicrachersurvostombes.getText().isEmpty()) {
-<<<<<<< HEAD
-			System.out.println("Starting motor.");
-			System.out.println("With fact : "+new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()));
 
-			if(operatorCombo1.getSelectedItem().toString().equals("Backward chaining")) {
-				System.out.println("Motor selected : Backward"+jCheckBox1.isSelected());
-				m.chainageArriere(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
-=======
 			if(!baseDeFait.isEmpty()) {
 				System.out.println("Starting motor.");
 				System.out.println("With fact : "+new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()));
@@ -582,7 +575,7 @@ public class Mainframe extends javax.swing.JFrame {
 				printRulesAndFact();
 				if(operatorCombo1.getSelectedItem().toString().equals("Backward chaining")) {
 					System.out.println("Motor selected : Backward"+jCheckBox1.isSelected());
-					m.chainageArrière(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
+					m.chainageArriere(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
 				}else {
 					System.out.println("Motor selected : Forward");
 					m.chainageAvant(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
@@ -593,13 +586,12 @@ public class Mainframe extends javax.swing.JFrame {
 				jTextArea2.setText("");
 				jTextArea3.setText("");
 				for (Regle r : m.baseDeRegle) {
-					jTextArea2.setText(jTextArea2.getText()+"\n\nRule n° "+ ++cpt +"\n============"+r.toString());
+					jTextArea2.setText(jTextArea2.getText()+"\n\nRule nï¿½ "+ ++cpt +"\n============"+r.toString());
 				}
 				cpt=0;
 				for (Fait f : m.baseDeFaits) {
-					jTextArea3.setText(jTextArea3.getText()+"\n\nFact n° "+ ++cpt +"\n============\n"+f.toString());
+					jTextArea3.setText(jTextArea3.getText()+"\n\nFact nï¿½ "+ ++cpt +"\n============\n"+f.toString());
 				}
->>>>>>> branch 'master' of https://github.com/Thierryfe/SystemeExpert.git
 			}else {
 				System.out.println("Fact base is empty.");
 			}

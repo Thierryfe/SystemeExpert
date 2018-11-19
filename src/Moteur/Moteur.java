@@ -4,25 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Moteur {
-<<<<<<< HEAD
-	ArrayList<Fait> baseDeFaits;
-	ArrayList<Regle> baseDeRegle;
-	CreerBaseIncoherence baseIncoherence;
-=======
+
 	public ArrayList<Fait> baseDeFaits;
 	public ArrayList<Regle> baseDeRegle;
->>>>>>> branch 'master' of https://github.com/Thierryfe/SystemeExpert.git
 
 	public Moteur(ArrayList<Fait> baseDeFaits, ArrayList<Regle> baseDeRegle) {
 		super();
 		this.baseDeFaits = baseDeFaits;
 		this.baseDeRegle = baseDeRegle;
-		this.baseIncoherence = new CreerBaseIncoherence("Incoherence");
-		this.baseIncoherence.genererBaseIncoherence();
+		//this.baseIncoherence = new CreerBaseIncoherence("Incoherence");
+		//this.baseIncoherence.genererBaseIncoherence();
 	}
 
 	public void chainageAvant(Fait factToProve, boolean trace) {
-		System.out.println(this.baseIncoherence.compare(baseDeRegle));
+		//System.out.println(this.baseIncoherence.compare(baseDeRegle));
 		ArrayList<Regle> rulesTemp = new ArrayList<Regle>(baseDeRegle);
 		ArrayList<Fait> factsTemp = new ArrayList<Fait>(baseDeFaits);
 
