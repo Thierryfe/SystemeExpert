@@ -123,7 +123,7 @@ public class Moteur {
 		}
 		System.out.println("\n///////////////////////////////////////////////////////////////////");
 		}else {
-			System.out.println("Incoherence trouvé !");
+			System.out.println("Incoherence found !");
 		}
 	}
 
@@ -400,7 +400,7 @@ public class Moteur {
 		}
 		System.out.println("\n///////////////////////////////////////////////////////////////////");
 		}else {
-			System.out.println("Incoherence trouvé !");
+			System.out.println("Incoherence found !");
 		}
 	}
 

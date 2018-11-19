@@ -79,4 +79,17 @@ public class CreerBaseIncoherence {
 		}
 		return true;
 	}
+	
+	public boolean compareFact(ArrayList<Fait>bdf) {
+		for(Incoherence i : this.listeCoherence) {
+			for(Fait f : bdf) {
+				
+					if(f.equals(i)) {
+						return false;
+					}
+				
+			}
+		}
+		return true;
+	}
 }
