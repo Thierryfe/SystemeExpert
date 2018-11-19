@@ -527,11 +527,25 @@ public class Mainframe extends javax.swing.JFrame {
 
 	private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {                                      
 		// TODO add your handling code here:
+		Fait f= new Fait(jTextField3.getText(),operatorCombo.getSelectedItem().toString(),jTextField4.getText());
 		if(!jTextField3.getText().isEmpty()&&!jTextField4.getText().isEmpty()) {
+			boolean result=true;
+			
+			for (Fait fait : baseDeFait) {
+				if(fait.getNom().equals(f.getNom()) && fait.getValue().equals(f.getValue()) && fait.getOperator().equals(f.getOperator()) )
+					result=false;
+			}
+			
+			if(result) {
 			System.out.println("Adding fact : " +jTextField3.getText() +" "+operatorCombo.getSelectedItem().toString() +" "+jTextField4.getText());
-			baseDeFait.add(new Fait(jTextField3.getText(),operatorCombo.getSelectedItem().toString(),jTextField4.getText()));
+			baseDeFait.add(f);
 			printRulesAndFact();
 			m=new Moteur(baseDeFait,baseDeRegle);
+			}else
+				System.out.println("Fact already in base");
+			
+			jTextField3.setText("");
+			jTextField4.setText("");
 		}else {
 			System.out.println("Fact is missing value.");
 		}
