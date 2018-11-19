@@ -17,7 +17,7 @@ public class Moteur {
 
 	public void chainageAvant(Fait factToProve, boolean trace) {
 
-		
+		System.out.println(this.baseIncoherence.compare(baseDeRegle));
 		ArrayList<Regle> rulesTemp = new ArrayList<Regle>(baseDeRegle);
 		ArrayList<Fait> factsTemp = new ArrayList<Fait>(baseDeFaits);
 
