@@ -54,10 +54,12 @@ public class Mainframe extends javax.swing.JFrame {
 	ArrayList<Fait>baseDeFait;
 	Moteur m;
 	Fait but;
+	PrintStream original;
 
 	public Mainframe() {
 		setTitle("Expert system application");
 		initComponents();
+		original=System.out;
 		CustomOutputStream taos = new CustomOutputStream( jTextArea1, 1500 );
 		PrintStream ps = new PrintStream( taos );
 		System.setOut( ps );
@@ -327,9 +329,11 @@ public class Mainframe extends javax.swing.JFrame {
 
 		button = new JButton("Reset facts base");
 		button.addMouseListener(new MouseAdapter() {
+
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mousePressed(MouseEvent arg0) {
 				baseDeFait=new ArrayList<Fait>();
+				m=new Moteur(baseDeFait,baseDeRegle);
 				printRulesAndFact();
 			}
 		});
@@ -344,73 +348,73 @@ public class Mainframe extends javax.swing.JFrame {
 		lblFactToProve = new JLabel("Fact to prove :");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+				groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(10)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(jLabel2)
-							.addGap(224)
-							.addComponent(lblFactToProve, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-							.addGap(207)
-							.addComponent(jLabel5)
-							.addGap(268)
-							.addComponent(jLabel3))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGap(10)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(panel, GroupLayout.PREFERRED_SIZE, 271, GroupLayout.PREFERRED_SIZE)
-									.addGap(24)
-									.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addComponent(jCheckBox2))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 561, GroupLayout.PREFERRED_SIZE)
+										.addComponent(jLabel2)
+										.addGap(224)
+										.addComponent(lblFactToProve, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+										.addGap(207)
+										.addComponent(jLabel5)
+										.addGap(268)
+										.addComponent(jLabel3))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(4)
-									.addComponent(jLabel4)
-									.addGap(10)
-									.addComponent(button))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 971, GroupLayout.PREFERRED_SIZE)
-							.addGap(10)
-							.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 561, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
-		);
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addGroup(groupLayout.createSequentialGroup()
+														.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+														.addGap(18)
+														.addComponent(panel, GroupLayout.PREFERRED_SIZE, 271, GroupLayout.PREFERRED_SIZE)
+														.addGap(24)
+														.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+												.addComponent(jCheckBox2))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 561, GroupLayout.PREFERRED_SIZE)
+												.addGroup(groupLayout.createSequentialGroup()
+														.addGap(4)
+														.addComponent(jLabel4)
+														.addGap(10)
+														.addComponent(button))))
+								.addGroup(groupLayout.createSequentialGroup()
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 971, GroupLayout.PREFERRED_SIZE)
+										.addGap(10)
+										.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 561, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap())
+				);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+				groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(16)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(jLabel2)
-						.addComponent(jLabel5)
-						.addComponent(jLabel3)
-						.addComponent(lblFactToProve))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGap(16)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(jLabel2)
+								.addComponent(jLabel5)
+								.addComponent(jLabel3)
+								.addComponent(lblFactToProve))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(4)
-									.addComponent(jLabel4))
-								.addComponent(button)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(jPanel2, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-								.addComponent(jPanel1, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-								.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(jCheckBox2)))
-					.addGap(9)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
-						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)))
-		);
+										.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)
+										.addGap(6)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addGroup(groupLayout.createSequentialGroup()
+														.addGap(4)
+														.addComponent(jLabel4))
+												.addComponent(button)))
+								.addGroup(groupLayout.createSequentialGroup()
+										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+												.addComponent(jPanel2, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+												.addComponent(jPanel1, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+												.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(jCheckBox2)))
+						.addGap(9)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+								.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)))
+				);
 
 		label = new JLabel();
 		label.setText("Fact");
@@ -502,7 +506,15 @@ public class Mainframe extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+
+				System.setOut(original);
+
 				MenuConsole.menuConsole();
+
+				CustomOutputStream taos = new CustomOutputStream( jTextArea1, 1500 );
+				PrintStream ps = new PrintStream( taos );
+				System.setOut( ps );
+				System.setErr( ps );
 			}
 		});
 
@@ -530,20 +542,20 @@ public class Mainframe extends javax.swing.JFrame {
 		Fait f= new Fait(jTextField3.getText(),operatorCombo.getSelectedItem().toString(),jTextField4.getText());
 		if(!jTextField3.getText().isEmpty()&&!jTextField4.getText().isEmpty()) {
 			boolean result=true;
-			
+
 			for (Fait fait : baseDeFait) {
 				if(fait.getNom().equals(f.getNom()) && fait.getValue().equals(f.getValue()) && fait.getOperator().equals(f.getOperator()) )
 					result=false;
 			}
-			
+
 			if(result) {
-			System.out.println("Adding fact : " +jTextField3.getText() +" "+operatorCombo.getSelectedItem().toString() +" "+jTextField4.getText());
-			baseDeFait.add(f);
-			printRulesAndFact();
-			m=new Moteur(baseDeFait,baseDeRegle);
+				System.out.println("Adding fact : " +jTextField3.getText() +" "+operatorCombo.getSelectedItem().toString() +" "+jTextField4.getText());
+				baseDeFait.add(f);
+				printRulesAndFact();
+				m=new Moteur(baseDeFait,baseDeRegle);
 			}else
 				System.out.println("Fact already in base");
-			
+
 			jTextField3.setText("");
 			jTextField4.setText("");
 		}else {
@@ -555,15 +567,32 @@ public class Mainframe extends javax.swing.JFrame {
 	private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {                                      
 		// TODO add your handling code here:*
 		if(!txtLivre.getText().isEmpty()&&!txtJiraicrachersurvostombes.getText().isEmpty()) {
-			System.out.println("Starting motor.");
-			System.out.println("With fact : "+new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()));
-
-			if(operatorCombo1.getSelectedItem().toString().equals("Backward chaining")) {
-				System.out.println("Motor selected : Backward"+jCheckBox1.isSelected());
-				m.chainageArrière(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
+			if(!baseDeFait.isEmpty()) {
+				System.out.println("Starting motor.");
+				System.out.println("With fact : "+new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()));
+				System.out.println("Reseting base...");
+				printRulesAndFact();
+				if(operatorCombo1.getSelectedItem().toString().equals("Backward chaining")) {
+					System.out.println("Motor selected : Backward"+jCheckBox1.isSelected());
+					m.chainageArrière(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
+				}else {
+					System.out.println("Motor selected : Forward");
+					m.chainageAvant(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
+					
+				}
+				int cpt=0;
+				//printing rules and facts
+				jTextArea2.setText("");
+				jTextArea3.setText("");
+				for (Regle r : m.baseDeRegle) {
+					jTextArea2.setText(jTextArea2.getText()+"\n\nRule n° "+ ++cpt +"\n============"+r.toString());
+				}
+				cpt=0;
+				for (Fait f : m.baseDeFaits) {
+					jTextArea3.setText(jTextArea3.getText()+"\n\nFact n° "+ ++cpt +"\n============\n"+f.toString());
+				}
 			}else {
-				System.out.println("Motor selected : Forward");
-				m.chainageAvant(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
+				System.out.println("Fact base is empty.");
 			}
 		}else {
 			System.out.println("No fact to prove.");

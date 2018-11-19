@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Moteur {
-	ArrayList<Fait> baseDeFaits;
-	ArrayList<Regle> baseDeRegle;
+	public ArrayList<Fait> baseDeFaits;
+	public ArrayList<Regle> baseDeRegle;
 
 	public Moteur(ArrayList<Fait> baseDeFaits, ArrayList<Regle> baseDeRegle) {
 		super();
