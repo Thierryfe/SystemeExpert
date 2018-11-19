@@ -42,12 +42,12 @@ public class Moteur {
 					System.out.println("Checking rule number " + ++nbrOfRule);
 					System.out.println("Rule contains : " + ruleTocheck);
 				}
-				// System.out.println("on parcours les règles, on est sur :
+				// System.out.println("on parcours les rï¿½gles, on est sur :
 				// "+ruleTocheck.toString());
-				// si on trouve une rï¿½gle applicable donc une prémisse de cette règles dans la
+				// si on trouve une rï¿½gle applicable donc une prï¿½misse de cette rï¿½gles dans la
 				// base de fait
 				// alors
-				// on le récupere
+				// on le rï¿½cupere
 				// on retire cette rï¿½gle de la base de rï¿½gle
 				// on stop le for
 				// on ajoute la conclusion de cette rï¿½gle ï¿½ la base de fait
@@ -72,18 +72,18 @@ public class Moteur {
 
 					premisseActuelle = premisseActuelle.getPremisseEventuelle();
 				}
-				// si on trouve une règle applicable alors on stop la recherche
+				// si on trouve une rï¿½gle applicable alors on stop la recherche
 				if ((nombreDePremisseValide == ruleTocheck.nombreDePremisse()) && nombreDePremisseValide > 0) {
 					if (trace)
 						System.out.println("\tAll premisse(s) validated, rule is applicable.");
 					applicableRule = ruleTocheck;
 					break;
-				}//si on trouve une règle applicable
+				}//si on trouve une rï¿½gle applicable
 
 
 			}
-			// si il y une règle applicable on la retire de la liste des règles et on ajoute
-			// les consequences à la base de fait
+			// si il y une rï¿½gle applicable on la retire de la liste des rï¿½gles et on ajoute
+			// les consequences ï¿½ la base de fait
 			if (applicableRule != null) {
 				if (trace)
 					System.out.println("\tRemoving rule from rules base.");
@@ -133,7 +133,7 @@ public class Moteur {
 
 	public boolean regleApplicable(List<Regle> baseDeRegles, List<Fait> baseDeFaits) {
 		// on verifie si pour chaque regle il y a une premisse dans la base de faits
-		// System.out.println("on va rechercher si une règle est applicable");
+		// System.out.println("on va rechercher si une rï¿½gle est applicable");
 		for (Regle regle : baseDeRegles) {
 
 			for (Fait fait : baseDeFaits) {
@@ -151,7 +151,7 @@ public class Moteur {
 
 			}
 		}
-		// System.out.println("Pas de règle applicable");
+		// System.out.println("Pas de rï¿½gle applicable");
 		return false;
 	}
 
@@ -271,7 +271,7 @@ public class Moteur {
 
 	}
 
-	public void chainageArrière(Fait factToProve, boolean trace) {
+	public void chainageArriere(Fait factToProve, boolean trace) {
 
 		ArrayList<Regle> rulesTemp = new ArrayList<Regle>(baseDeRegle);
 		ArrayList<Fait> factsTemp = new ArrayList<Fait>(baseDeFaits);
@@ -321,7 +321,7 @@ public class Moteur {
 				}
 			}
 
-			// on verifie si on a des règles valides
+			// on verifie si on a des rï¿½gles valides
 			if (trace)
 				System.out.println(
 						"\nChecking if valid rules list, contains valid premisses according to the facts base.");

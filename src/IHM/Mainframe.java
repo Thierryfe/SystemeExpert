@@ -546,7 +546,7 @@ public class Mainframe extends javax.swing.JFrame {
 
 			if(operatorCombo1.getSelectedItem().toString().equals("Backward chaining")) {
 				System.out.println("Motor selected : Backward"+jCheckBox1.isSelected());
-				m.chainageArrière(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
+				m.chainageArriere(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
 			}else {
 				System.out.println("Motor selected : Forward");
 				m.chainageAvant(new Fait(txtLivre.getText(),comboBox.getSelectedItem().toString(),txtJiraicrachersurvostombes.getText()), jCheckBox2.isSelected());
@@ -604,11 +604,11 @@ public class Mainframe extends javax.swing.JFrame {
 		jTextArea3.setText("");
 		int cpt=0;
 		for (Regle r : baseDeRegle) {
-			jTextArea2.setText(jTextArea2.getText()+"\n\nRule n° "+ ++cpt +"\n============"+r.toString());
+			jTextArea2.setText(jTextArea2.getText()+"\n\nRule nï¿½ "+ ++cpt +"\n============"+r.toString());
 		}
 		cpt=0;
 		for (Fait f : baseDeFait) {
-			jTextArea3.setText(jTextArea3.getText()+"\n\nFact n° "+ ++cpt +"\n============\n"+f.toString());
+			jTextArea3.setText(jTextArea3.getText()+"\n\nFact nï¿½ "+ ++cpt +"\n============\n"+f.toString());
 		}
 	}
 

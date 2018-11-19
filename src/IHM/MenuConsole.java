@@ -66,7 +66,7 @@ public class MenuConsole {
 							break;
 						}
 					}
-					m.chainageArrière(butMenu(),isTrace);
+					m.chainageArriere(butMenu(),isTrace);
 
 				}else if(line.equals("3")) {
 					System.out.println("Expert system app closed.");
