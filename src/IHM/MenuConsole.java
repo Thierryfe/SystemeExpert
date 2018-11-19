@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import Moteur.CreateBaseDeRegle;
+import Moteur.CreerBaseIncoherence;
 import Moteur.Fait;
 import Moteur.Moteur;
 import Moteur.Regle;

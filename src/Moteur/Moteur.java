@@ -7,17 +7,18 @@ public class Moteur {
 
 	public ArrayList<Fait> baseDeFaits;
 	public ArrayList<Regle> baseDeRegle;
+	public CreerBaseIncoherence baseIncoherence;
 
 	public Moteur(ArrayList<Fait> baseDeFaits, ArrayList<Regle> baseDeRegle) {
 		super();
 		this.baseDeFaits = baseDeFaits;
 		this.baseDeRegle = baseDeRegle;
-		//this.baseIncoherence = new CreerBaseIncoherence("Incoherence");
-		//this.baseIncoherence.genererBaseIncoherence();
+		this.baseIncoherence = new CreerBaseIncoherence("Incoherence");
+		this.baseIncoherence.genererBaseIncoherence();
+		System.out.println(this.baseIncoherence.compare(baseDeRegle));
 	}
 
 	public void chainageAvant(Fait factToProve, boolean trace) {
-		//System.out.println(this.baseIncoherence.compare(baseDeRegle));
 		ArrayList<Regle> rulesTemp = new ArrayList<Regle>(baseDeRegle);
 		ArrayList<Fait> factsTemp = new ArrayList<Fait>(baseDeFaits);
 
