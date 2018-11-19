@@ -3,7 +3,7 @@ package Moteur;
 import Data.Operator;
 
 /**
- *   Classe modélisant un fait, composé d'un nom d'un opérateur et
+ *   Classe modï¿½lisant un fait, composï¿½ d'un nom d'un opï¿½rateur et
  *         d'une valeur 
  *         Exemple : livre = Les_enfants_de_Hurin
  */
@@ -68,6 +68,10 @@ public class Fait {
 		return null;
 	}
 
+	public boolean equals(Object arg0) {
+		return (((Fait)arg0).nom).equals(this.nom) && (((Fait)arg0).operator).equals(this.operator) && (((Fait)arg0).value).equals(this.value);
+	}
+	
 	public String toString() {
 		return nom + " " + operator + " " + value;
 	}

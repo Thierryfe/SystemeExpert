@@ -14,14 +14,14 @@ public class Moteur {
 		this.baseDeFaits = baseDeFaits;
 		this.baseDeRegle = baseDeRegle;
 		this.baseIncoherence = new CreerBaseIncoherence("Incoherence");
-		this.baseIncoherence.genererBaseIncoherence();
-		System.out.println(this.baseIncoherence.compare(baseDeRegle));
 	}
 
 	public void chainageAvant(Fait factToProve, boolean trace) {
+		this.baseIncoherence.genererBaseIncoherence();
 		ArrayList<Regle> rulesTemp = new ArrayList<Regle>(baseDeRegle);
 		ArrayList<Fait> factsTemp = new ArrayList<Fait>(baseDeFaits);
 
+		if(this.baseIncoherence.compare(baseDeRegle)) {
 		if (trace) {
 			System.out.println("\nStarting forwardchaining...");
 			System.out.println("\nBases status :");
@@ -122,6 +122,9 @@ public class Moteur {
 			System.out.println("\tFact is wrong !");
 		}
 		System.out.println("\n///////////////////////////////////////////////////////////////////");
+		}else {
+			System.out.println("Incoherence trouvé !");
+		}
 	}
 
 	public boolean bdFContientFait(List<Fait> baseDeFaits, Fait fait) {
@@ -277,11 +280,14 @@ public class Moteur {
 
 	public void chainageArriere(Fait factToProve, boolean trace) {
 
+		this.baseIncoherence.genererBaseIncoherence();
+		
 		ArrayList<Regle> rulesTemp = new ArrayList<Regle>(baseDeRegle);
 		ArrayList<Fait> factsTemp = new ArrayList<Fait>(baseDeFaits);
 		ArrayList<Fait> factsToProve = new ArrayList<Fait>();
 		factsToProve.add(factToProve);
 
+		if(this.baseIncoherence.compare(baseDeRegle)) {
 		if (trace) {
 			System.out.println("\nStarting backward chaining...");
 			System.out.println("\nBases status :");
@@ -393,6 +399,9 @@ public class Moteur {
 			System.out.println("\tFact is wrong !");
 		}
 		System.out.println("\n///////////////////////////////////////////////////////////////////");
+		}else {
+			System.out.println("Incoherence trouvé !");
+		}
 	}
 
 }

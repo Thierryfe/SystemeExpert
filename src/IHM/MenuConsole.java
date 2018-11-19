@@ -15,10 +15,6 @@ public class MenuConsole {
 	public static void menuConsole() {
 		CreateBaseDeRegle rb = new CreateBaseDeRegle("Rules");
 		rb.generateRuleBased();
-
-		CreerBaseIncoherence baseIncoherence = new CreerBaseIncoherence("Incoherence");
-		baseIncoherence.genererBaseIncoherence();
-		System.out.println(baseIncoherence.compare(rb.getRulesBase()));
 		
 		ArrayList<Regle>baseDeRegle=rb.getRulesBase();
 
@@ -29,7 +25,6 @@ public class MenuConsole {
 		baseDeFait.add(new Fait("theme","=","vengeance"));
 
 		Fait but = new Fait("livre","=","J_irai_cracher_sur_vos_tombes");
-
 
 		Moteur m = new Moteur(baseDeFait,baseDeRegle);
 

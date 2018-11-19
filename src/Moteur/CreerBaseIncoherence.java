@@ -71,10 +71,7 @@ public class CreerBaseIncoherence {
 				}
 				
 				for(Premisse pre : p) {
-					System.out.println(i.getFait() + "inco");
-					System.out.println(pre.getFait());
 					if(pre.getFait().equals(i.getFait())) {
-						System.out.println("faux");
 						return false;
 					}
 				}
